@@ -2,21 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>组件模板的写法</title>
+    <title>组件模板的抽出写法</title>
+    <script src="../shoppingCar/vue.js"></script>
 </head>
 <body>
 <div id="app">
-
+<cpn_1></cpn_1>
+<cpn_2></cpn_2>
 </div>
-<script type="text/x-template">
+<!--第一种抽出-->
+<script type="text/x-template" id="cpn1">
     <div>
         <h2>内容一</h2>
     </div>
+</script>
+<!--第二种抽出-->
+<template id="cpn2">
+    <div>
+        <h2>内容二</h2>
+    </div>
+</template>
+<script>
+    Vue.component('cpn_1',{
+        template:'#cpn1'
+    })
+    Vue.component('cpn_2',{
+        template: '#cpn2'
+    })
     new Vue({
-
+        el:"#app"
     })
 </script>
 
 </body>
 </html>
-<script src="../shoppingCar/vue.js"></script>

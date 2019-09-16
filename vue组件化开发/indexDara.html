@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件的数据存取</title>
+    <script src="../shoppingCar/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<cpn_1></cpn_1>
+</div>
+<template id="cpn1">
+    <div>
+        <h1>{{title}}</h1>
+    </div>
+</template>
+<script>
+    Vue.component('cpn_1',{
+        template:'#cpn1',
+        data(){//data必须是个函数
+            return{
+                title:'标题一'
+            }
+        }
+    })
+    new Vue({
+        el:"#app"
+    })
+</script>
+</body>
+</html>

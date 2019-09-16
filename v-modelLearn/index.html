@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+<!-- lazy：在input失去焦点或者敲下回车后才会加载变化-->
+    <input  v-model.lazy="message"/>
+    <span>{{message}}</span>
+<!-- v-model传过去的值默认为string类型，所以要依靠.number修饰符修饰成number类型 -->
+    <input type="number" v-model.number="message2"/>
+    <span>{{message2}}</span>
+<!-- .trim:去除字符串起始和结束位置的多余的空格-->
+    <input type="number" v-model.number="message2"/>
+    <span>{{message2}}</span>
+    <p>
+<!-- 男女name属性设置为同一值可以使其互斥,使用v-model配合vue.js中的data也可以达到一样的效果-->
+    <label for="male">
+        <input type="radio" id="male" v-model="sex" value="男"/>男
+    </label>
+    <label for="famale">
+        <input type="radio" id="famale" v-model="sex" value="女"/>女
+    </label>
+        <h2>{{sex}}</h2>
+    </p>
+    <p>
+        <label for="agree">
+        <input type="checkbox" id="agree" v-model="isAgree"/>同意协议
+        </label>
+    </p>
+    <p>
+<!-- v-model配合checkBox多选框使用时，可以给中转属性定义一个数组，就可以实现多选-->
+        <label>
+            <input type="checkbox" value="极地"   v-model="myRace"/>极地
+            <input type="checkbox" value="恶魔"   v-model="myRace"/>恶魔
+            <input type="checkbox" value="帝国"   v-model="myRace"/>帝国
+            <input type="checkbox" value="贵族"   v-model="myRace"/>贵族
+            <input type="checkbox" value="狂野"   v-model="myRace"/>狂野
+            <input type="checkbox" value="约德尔" v-model="myRace"/>约德尔
+            <input type="checkbox" value="海克斯" v-model="myRace"/>海克斯
+            <input type="checkbox" value="龙"     v-model="myRace"/>龙
+            <input type="checkbox" value="海盗"   v-model="myRace"/>海盗
+            <input type="checkbox" value="暗影"   v-model="myRace"/>暗影
+            <input type="checkbox" value="忍者"   v-model="myRace"/>忍者
+            <input type="checkbox" value="浪人"   v-model="myRace"/>浪人
+        </label>
+        <h4>{{myRace}}</h4>
+    </p>
+    <p>
+        <select v-model="fruit">
+            <option value="极地">极地</option>
+            <option value="恶魔">恶魔</option>
+            <option value="狂野">狂野</option>
+            <option value="约德尔">约德尔</option>
+        </select>
+    <h5>{{fruit}}</h5>
+    </p>
+    <p>
+        <select v-model="fruits" multiple>
+            <option value="极地">极地</option>
+            <option value="恶魔">恶魔</option>
+            <option value="狂野">狂野</option>
+            <option value="约德尔">约德尔</option>
+        </select>
+    <h5>{{fruits}}</h5>
+    </p>
+    <p>
+        <label v-for="item in races" :for="item">
+            <input type="checkbox"  :value="item" :id="item" v-model="myRaces"/>{{item}}
+        </label>
+        <h6> {{myRaces}}</h6>
+    </p>
+    <button type="submit" :disabled="!isAgree">提交</button>
+</div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>

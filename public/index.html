@@ -5,13 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>vue03</title>
+    <style>
+      .redColor{
+        color: antiquewhite;
+      }
+    </style>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but vue03 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <div id="app">
+      <ul>
+        <li v-for="(value,key,index) in pet">
+          {{key}}.{{value}}.{{index}}
+        </li>
+        <li v-for="item in num"> {{item}}</li>
+      </ul>
+      <button @click="btn">排序</button>
+<!--      <ul>-->
+<!--        <li v-for="(item,index) in pets" :class="{redColor:currenIndex===index}" @click="btnColor(index)">-->
+<!--            {{item}}-->
+<!--        </li>-->
+<!--      </ul>-->
+    </div>
+    <script>
+      const app = new Vue({
+        el:"#app",
+        data: {
+          pet: {
+            name: '十二',
+            age: 22,
+            is: 'dog'
+          },
+          num: [7, 6, 4, 5, 1],
+          pets: ['猫', '狗', '鱼', '鸟', '蛇', '龟'],
+          currenIndex:0
+        },
+        methods:{
+          btn(){
+           // this.num.sort();排序
+            this.num.reverse();//反转
+          },
+          btnColor(index){
+            this.currenIndex=index;
+          }
+        }
+      })
+    </script>
   </body>
 </html>

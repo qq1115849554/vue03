@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件间的数据传递</title>
+    <script src="../shoppingCar/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<cpn1 v-bind:craces="races" :cmessage="message" :carray="array"></cpn1>
+</div>
+<template id="cpn1">
+    <div>
+    <h6>{{cmessage}}</h6>
+    <p>{{craces}}</p>
+    <p>{{carray}}</p>
+    </div>
+</template>
+<script>
+    //HTML中不适用驼峰算法，命名时使用驼峰算法则使用时应用-分开，如sMessage应为s-message
+    cpn = {
+        template:'#cpn1',
+        //第一种
+        //props:['craces','cmessage'],
+        //第二种
+        props:{
+                cmessage:{
+                    type:String,
+                    default:'默认值',
+                    required:true//是否为必传值
+                },
+            craces:{
+                    type:String,
+                    default:'默认值'
+            },
+            carray:{
+                    type:Array,
+                    default(){//当默认值为数组或对象时，应写成函数
+                        return []
+                    }
+            }
+        },
+        data(){
+            return {
+
+            }
+        }
+    }
+    new Vue({
+        el:'#app',
+        data:{
+            message:"Races:",
+            array:['1','a','ssa','sad']
+        },
+        components:{
+            'cpn1':cpn
+            }
+    })
+</script>
+</body>
+</html>

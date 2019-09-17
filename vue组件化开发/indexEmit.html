@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子组件向父组件传递</title>
+    <script src="../shoppingCar/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <cpn @itemclick="cpnclick"></cpn>
+</div>
+<template id="cpn">
+<div>
+    <button v-for="item in ztree" @click="btnclick(item)">{{item.name}}</button>
+</div>
+</template>
+<script>
+    const cpn = {
+      template:'#cpn',
+      data(){
+          return{
+              ztree:[
+                  {id: 'aaa',name:'内容一'},
+                  {id: 'bbb',name:'内容二'},
+                  {id: 'ccc',name:'内容三'}
+              ]
+          }
+      },
+        methods:{
+          btnclick(item){
+              //发射事件,自定义事件
+              this.$emit('itemclick',item)
+          }
+      }
+    };
+    new Vue({
+        el:"#app",
+        components:{
+            cpn
+        },
+        methods: {
+            cpnclick(item){
+                console.log('cpnclick',item);
+            }
+        }
+    })
+</script>
+</body>
+</html>

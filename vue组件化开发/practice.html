@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件开发练习</title>
+    <script src="../shoppingCar/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<cpn :cnum1="num1" :cnum2="num2" @num1change="num1change" @num2change="num2change"></cpn>
+</div>
+<template id="cpn">
+    <div>
+<!--        v-model的实质，是v-bind与v-on的组合-->
+        <h5 >num1:{{cnum1}}</h5>
+        <input type="text" :value="cnum3" @input="cnum1input">
+        <h5 >num2:{{cnum2}}</h5>
+        <input type="text" :value="cnum4" @input="cnum2input">
+    </div>
+</template>
+
+<script>
+const cpn={
+    template:'#cpn',
+    methods:{
+       cnum1input(event){
+           this.cnum3=event.target.value;
+           this.$emit("num1change",this.cnum3)
+       },
+       cnum2input(event){
+           this.cnum4=event.target.value;
+           this.$emit("num2change",this.cnum4)
+
+       }
+
+    },
+    data(){
+        return{
+            cnum3:this.cnum1,
+            cnum4:this.cnum2
+        }
+    },
+    props:{
+        cnum1:Number,
+        cnum2:Number
+    }
+}
+    new Vue({
+        el:"#app",
+        data:{
+            num1:1,
+            num2:2
+        },
+        components:{
+            cpn
+        },
+        methods: {
+            num1change(value){
+                this.num1=parseInt(value);
+            },
+            num2change(value){
+                this.num2=parseInt(value);
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -7,18 +7,20 @@
 </head>
 <body>
 <div id="app">
-<cpn :cnum1="num1" :cnum2="num2" @num1change="num1change" @num2change="num2change"></cpn>
+<cpn :cnum1="num1"
+     :cnum2="num2"
+     @num1change="num1change"
+     @num2change="num2change" />
 </div>
 <template id="cpn">
     <div>
 <!--        v-model的实质，是v-bind与v-on的组合-->
         <h5 >num1:{{cnum1}}</h5>
-        <input type="text" :value="cnum3" @input="cnum1input">
+        <input type="text" :value="cnum3" @input="cnum1input" />
         <h5 >num2:{{cnum2}}</h5>
-        <input type="text" :value="cnum4" @input="cnum2input">
+        <input type="text" :value="cnum4" @input="cnum2input" />
     </div>
 </template>
-
 <script>
 const cpn={
     template:'#cpn',
@@ -40,11 +42,11 @@ const cpn={
             cnum4:this.cnum2
         }
     },
-    props:{
-        cnum1:Number,
-        cnum2:Number
+    props: {
+        cnum1: Number,
+        cnum2: Number
     }
-}
+};
     new Vue({
         el:"#app",
         data:{
